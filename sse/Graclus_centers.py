@@ -60,8 +60,7 @@ def Graclus_centers(G):
         linksCi_Ci = subGraph.number_of_edges()
         print(linksCi_Ci)
         degCi = sum(dict(G.degree(subGraph.nodes())).values())
-        print(f">>>>> subGraph: {subGraph}")
-        print(f">>>>> degCi: {degCi}")
+        print("degCi %d  " % degCi)
         print("cluster %d  " % cluster)
         for vertex in get_clusters_node(part, cluster):
             if subGraph.has_node(vertex):
@@ -70,7 +69,8 @@ def Graclus_centers(G):
                 linksV_Ci = len(list(G.neighbors(vertex)))
 
                 print("vertex %d  " % vertex)
-                distances.update({vertex: (-2 * linksV_Ci / degV * degCi) + (linksCi_Ci / degCi ** 2) + (sigma / degV) - (
+                distances.update(
+                    {vertex: (-2 * linksV_Ci / degV * degCi) + (linksCi_Ci / degCi ** 2) + (sigma / degV) - (
                             sigma / degCi)})
                 print(distances)
         print("cluster %d minimum distance %f" % (cluster, min(distances.values())))

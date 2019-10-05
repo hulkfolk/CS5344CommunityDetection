@@ -18,11 +18,3 @@ def file_graph_building(path):
 
     print(f">>>>>>> built graph: \n{nx.info(g)}")
     return g
-
-
-
-
-
-
-
-

@@ -42,7 +42,6 @@ def color_building_list(G, expansion):
         valeur = valeur + 1
 
     values = [partition.get(node) for node in G.nodes()]
-    print(values)
     for i, val in enumerate(values):
         if val == None:
             values[i] = values[i - 1]
