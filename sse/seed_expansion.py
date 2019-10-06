@@ -141,9 +141,11 @@ def neighbor_inflation(G, seeds):
     for i in range(len(seeds)):
         seed = seeds[i]
         egonet = list()
-        for s in seed:
-            egonet.append(s)
-            [egonet.append(k) for k in G.neighbors(s)]
+        # for s in seed:
+        #     egonet.append(s)
+        #     [egonet.append(k) for k in G.neighbors(s)]
+        egonet.append(seed)
+        [egonet.append(k) for k in G.neighbors(seed)]
         seeds[i] = list(set(egonet))
     # print sorted([int(k) for k in seeds[i]])
 
