@@ -1,4 +1,4 @@
 # CS5344CommunityDetection
 Seed Set Expansion:
-    Dependencies: python-louvain, networkx, matplotlib
-    How to run: python init.py ../data/<data file>
+    Dependencies: python-louvain, networkx
+    How to run: python seed_expansion.py ../data/<data file>
