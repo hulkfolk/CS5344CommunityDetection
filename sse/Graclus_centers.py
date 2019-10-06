@@ -16,8 +16,8 @@ def minimum_of_float_list(liste):
 
 
 # get cluster in a graph
-def get_community(G, nb_cluster):
-    part = community_louvain.best_partition(G)
+def get_community(G, part, nb_cluster):
+    # part = community_louvain.best_partition(G)
     liste = []
     for node, cluster in part.items():
         if cluster == nb_cluster:
@@ -56,7 +56,7 @@ def Graclus_centers(G):
 
     for cluster in clusters:
         distances = {}
-        subGraph = get_community(G, cluster)
+        subGraph = get_community(G, part, cluster)
         linksCi_Ci = subGraph.number_of_edges()
         print(linksCi_Ci)
         degCi = sum(dict(G.degree(subGraph.nodes())).values())
@@ -68,7 +68,7 @@ def Graclus_centers(G):
 
                 linksV_Ci = len(list(G.neighbors(vertex)))
 
-                print("vertex %d  " % vertex)
+                print("vertex %s  " % vertex)
                 distances.update(
                     {vertex: (-2 * linksV_Ci / degV * degCi) + (linksCi_Ci / degCi ** 2) + (sigma / degV) - (
                             sigma / degCi)})

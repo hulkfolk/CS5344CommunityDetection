@@ -11,7 +11,7 @@ from graph_building import file_graph_building
 # Remove all single-edge biconnected components (remain connected after
 # removing any vertex and its adjacent edges)
 # Compute the largest connected component
-from sse.seed_set_expansion import seed_set_expansion
+from sse.deprecated.seed_set_expansion import seed_set_expansion
 
 mon_fichier = open("com1.txt", "w")  # Argh j'ai tout écrasé !
 
