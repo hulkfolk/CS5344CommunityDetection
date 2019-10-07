@@ -3,6 +3,7 @@ import os
 from functools import reduce
 import random
 import argparse
+import json
 
 def read_graph_from_file(path):
     graph = nx.Graph()
@@ -120,8 +121,17 @@ def copra(graph, k):
                 # set new labels
                 for label in new_labels.keys():
                     data[label] = new_labels[label]
-    print('communities', get_communities(all_new_labels))
     
+    return get_communities(all_new_labels)
+
+def save_output(result, filename):
+    # save expansion result
+    output_file = os.path.join(os.path.dirname(__file__), 'output', filename)
+    if os.path.exists(output_file):
+        os.remove(output_file)
+    with open(output_file, 'w') as f:
+        f.write(json.dumps(result))
+
 
 def get_communities(all_new_labels):
     communities = {}
@@ -135,9 +145,9 @@ def get_communities(all_new_labels):
 
 
 if __name__ == '__main__':
-    graph_path = os.path.join(os.path.dirname(__file__), '..', 'data', 'graph.txt')
+    graph_file = os.path.join(os.path.dirname(__file__), '..', 'data', 'graph.txt')
 
-    graph = read_graph_from_file(graph_path)
+    graph = read_graph_from_file(graph_file)
     print("Graph Loaded\n")
 
     parser = argparse.ArgumentParser()
@@ -147,5 +157,8 @@ if __name__ == '__main__':
     # number of communities
     k = args.communities
 
-    print('Start the process with k = ' + str(k) + '\n')
-    copra(graph, k)
+    print('Start the COPRA process with k = ' + str(k) + '\n')
+    communities = copra(graph, k)
+
+    save_output(communities, os.path.basename(graph_file))
+    print('Finish the COPRA process\n')
