@@ -4,6 +4,7 @@ from functools import reduce
 import random
 import argparse
 import json
+import sys
 
 def read_graph_from_file(path):
     graph = nx.Graph()
@@ -105,7 +106,7 @@ def copra(graph, k):
     iteration = 0
     while True:
         iteration += 1
-        print('iteration ' + str(iteration))
+        print('Iteration ' + str(iteration))
         all_new_labels = propagate(graph, k);
 
         if check_stop_condition(graph, all_new_labels):
@@ -145,14 +146,15 @@ def get_communities(all_new_labels):
 
 
 if __name__ == '__main__':
-    graph_file = os.path.join(os.path.dirname(__file__), '..', 'data', 'graph.txt')
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--communities', help='number of communities', default=2)
+    parser.add_argument('--filename', help='file in data folder', default='graph.txt')
+    args = parser.parse_args()
+
+    graph_file = os.path.join(os.path.dirname(__file__), '..', 'data', args.filename)
 
     graph = read_graph_from_file(graph_file)
     print("Graph Loaded\n")
-
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--communities', help='number of communities', default=2)
-    args = parser.parse_args()
 
     # number of communities
     k = args.communities
