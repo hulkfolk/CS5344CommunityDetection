@@ -7,6 +7,7 @@ from pyspark import SparkConf, SparkContext
 import json
 import sys
 import re
+import time
 
 
 # initialize spark
@@ -27,12 +28,13 @@ def read_line(l):
   (src, dst) = re.split(r'[^\w]+', l)
   return [(src, dst), (dst, src)]
 
-print('#### start reading file')
 print('\n')
-
+print('#### initialize')
+print('start reading file')
+start_time = time.time()
 edges = lines.flatMap(read_line)
-
-print('#### finish reading file')
+print('finish reading file')
+print("--- %s seconds ---" % (time.time() - start_time))
 print('\n')
 
 # nodes is in (node, neighbours) key pair
@@ -106,21 +108,37 @@ def propagate_new_labels(info, threadhold):
 
 
 def get_labels_set_size(nodes):
-  all_labels_list = nodes.mapValues(lambda info: info['labels']).flatMap(lambda (v, labels): labels).collect()
-  return sc.parallelize(all_labels_list).groupByKey().count()
+  print('     start getting labels list')
+  start_time = time.time();
+  labels_list = nodes.flatMap(lambda (_, info): map(lambda (label, _): (label, 1), info['labels'])).groupByKey()
+  print('     finish getting labels list')
+  print("     --- %s seconds ---" % (time.time() - start_time))
+  print('\n')
+  print('     start counting')
+  start_time = time.time();
+  count = labels_list.count()
+  print('     finish counting')
+  print("     --- %s seconds ---" % (time.time() - start_time))
+  return count
 
 def get_communities(nodes):
+  print('start getting communities')
+  start_time = time.time()
   all_communities_list = nodes.mapValues(lambda info: info['labels']).flatMap(lambda (v, labels): map(lambda (label, _): (label, v), labels)).collect()
+  print('finish getting communities')
+  print("--- %s seconds ---" % (time.time() - start_time))
+  print('\n')
   return sc.parallelize(all_communities_list).groupByKey().mapValues(list)
 
 def copra(nodes, k=2):
   iteration = 0
 
   print('start calculating labels set size')
+  start_time = time.time()
   old_labels_set_size = get_labels_set_size(nodes)
   print('finish calculating labels set size')
   print('label size is ' + str(old_labels_set_size))
-  print('\n')
+  print("--- %s seconds ---" % (time.time() - start_time))
 
   while True:
     iteration += 1
@@ -129,42 +147,46 @@ def copra(nodes, k=2):
 
 
     print('start converting to nodes map')
+    start_time = time.time()
     nodes_map = nodes.collectAsMap()
     print('finish converting to nodes map')
+    print("--- %s seconds ---" % (time.time() - start_time))
     print('\n')
 
     print('start mapping neighbours nodes')
+    start_time = time.time()
     nodes = nodes.mapValues(lambda info: {
       'ngbs': map(lambda v: (v, nodes_map[v]['labels']), info['ngbs']),
       'labels': info['labels']
     })
+    # release memory 
     print('finish mapping neighbours nodes')
+    print("--- %s seconds ---" % (time.time() - start_time))
     print('\n')
 
     print('start updating labels')
+    start_time = time.time()
     # update the labels for each node
     nodes = nodes.mapValues(lambda info: {
       'ngbs': map(lambda (v, _): v, info['ngbs']),
       'labels': propagate_new_labels(info, 1/float(k)),
     })
     print('finish updating labels')
+    print("--- %s seconds ---" % (time.time() - start_time))
     print('\n')
 
     print('start calculating labels set size')
+    start_time = time.time()
     new_labels_set_size = get_labels_set_size(nodes)
     print('finish calculating labels set size')
-    print('label size is ' + str(new_labels_set_size))
-    print('\n')
-
-    print('\n')
+    print('label size is ' + str(new_labels_set_size) + ', old label size is ' + str(old_labels_set_size))
+    print("--- %s seconds ---" % (time.time() - start_time))
 
     if new_labels_set_size == old_labels_set_size:
       break
     else:
       old_labels_set_size = new_labels_set_size
 
-  print('start getting communities')
-  print('\n')
   return get_communities(nodes).collectAsMap()
 
 try: 
