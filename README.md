@@ -6,5 +6,9 @@ Seed Set Expansion:
 
 COPRA:
 
+  coprs.js
     - Dependencies: networkx
     - How to run: python copra/copra.py --filename <data file> --communities <number of communities>
+    
+  copra-spark.js
+    - How to run: spark-submit copra-spark.js <data file> <number of communities>
