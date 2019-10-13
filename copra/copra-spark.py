@@ -115,7 +115,12 @@ def get_communities(nodes):
 
 def copra(nodes, k=2):
   iteration = 0
+
+  print('start calculating labels set size')
   old_labels_set_size = get_labels_set_size(nodes)
+  print('finish calculating labels set size')
+  print('label size is ' + str(old_labels_set_size))
+  print('\n')
 
   while True:
     iteration += 1
@@ -123,29 +128,43 @@ def copra(nodes, k=2):
     print('#### Iteration ' + str(iteration))
 
 
+    print('start converting to nodes map')
     nodes_map = nodes.collectAsMap()
+    print('finish converting to nodes map')
+    print('\n')
 
+    print('start mapping neighbours nodes')
     nodes = nodes.mapValues(lambda info: {
       'ngbs': map(lambda v: (v, nodes_map[v]['labels']), info['ngbs']),
       'labels': info['labels']
     })
+    print('finish mapping neighbours nodes')
+    print('\n')
 
+    print('start updating labels')
     # update the labels for each node
     nodes = nodes.mapValues(lambda info: {
       'ngbs': map(lambda (v, _): v, info['ngbs']),
       'labels': propagate_new_labels(info, 1/float(k)),
     })
+    print('finish updating labels')
+    print('\n')
 
+    print('start calculating labels set size')
     new_labels_set_size = get_labels_set_size(nodes)
+    print('finish calculating labels set size')
+    print('label size is ' + str(new_labels_set_size))
+    print('\n')
 
-    print('old labels set size', old_labels_set_size)
-    print('new labels set size', new_labels_set_size)
+    print('\n')
 
     if new_labels_set_size == old_labels_set_size:
       break
     else:
       old_labels_set_size = new_labels_set_size
 
+  print('start getting communities')
+  print('\n')
   return get_communities(nodes).collectAsMap()
 
 try: 
