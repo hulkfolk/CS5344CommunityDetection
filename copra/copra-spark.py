@@ -2,63 +2,171 @@
 
 import re
 import os
+import random
 from pyspark import SparkConf, SparkContext
+import json
+import sys
+import re
 
 
 # initialize spark
 conf = SparkConf()
 sc = SparkContext(conf=conf)
+sc.setLogLevel("ERROR")
 
-lines = sc.textFile('../data/graph.txt');
+try:
+  filename = sys.argv[1]
+except:
+  filename = 'graph.txt'
+
+graph_file = os.path.join(os.path.dirname(__file__), '..', 'data', filename)
+
+lines = sc.textFile(graph_file);
 
 def read_line(l):
-  (src, dst) = ' '.split(l);
+  (src, dst) = re.split(r'[^\w]+', l)
   return [(src, dst), (dst, src)]
 
-links = lines.flatMap(read_line)
+print('#### start reading file')
+print('\n')
+
+edges = lines.flatMap(read_line)
+
+print('#### finish reading file')
+print('\n')
+
+# nodes is in (node, neighbours) key pair
+nodes = edges.groupByKey();
+
+# label_nodes is in (node, [
+#   {
+#     ngbs: list of ngbs 
+#     labels: list of labels
+#   },
+#   {
+#     ...
+#   }
+# ]) key pair
+
+# initialize the each node's label with itself
+nodes = nodes.map(lambda (v, ngbs): (v, {
+  'ngbs': list(ngbs),
+  'labels': [(v, 1)]
+}))
+
+def normalize_labels(labels_map):
+  new_labels_map = {}  
+  sum = reduce(lambda acc, val: acc + val, labels_map.values())
+  for label, value in labels_map.items():
+      new_labels_map[label] = value / float(sum)
+  return new_labels_map
+
+def filter_labels(labels_map, threadhold):
+  new_labels_map = {}
+  for label, value in labels_map.items():
+      if value >= threadhold:
+          new_labels_map[label] = value
+  return new_labels_map
+
+def pick_max_label(labels_map):
+  label_list = [(label, value) for label, value in labels_map.items()]
+
+  # find the max value among label_list
+  sorted_label_list = sorted(label_list, key=lambda item: item[1], reverse=True)
+  max_value = sorted_label_list[0][1]
+
+  # all labels with max value
+  max_labels = list(filter(lambda item: item[1] == max_value, sorted_label_list))
+
+  # randomly pick one with max value
+  random_item = random.choice(max_labels)
+  return { random_item[0]: random_item[1] }
+
+def propagate_new_labels(info, threadhold):
+  ngbs = info['ngbs'] 
+
+  labels_map = {}
+  for (ngb_v, ngb_labels) in ngbs:
+    for (label, value) in ngb_labels:
+      if label in labels_map:
+        labels_map[label] = labels_map[label] + value
+      else:
+        labels_map[label] = value
+
+  normalized_labels_map = normalize_labels(labels_map)
+  filtered_labels_map = filter_labels(normalized_labels_map, threadhold)
+
+  # check if filtered_labels_map still have labels inside
+  if len(filtered_labels_map.keys()) == 0:
+    # randonly pick the label with the max value
+    filtered_labels_map = pick_max_label(normalized_labels_map)
+
+  new_labels_map = normalize_labels(filtered_labels_map) 
+  return [(label, value) for (label, value) in new_labels_map.items()]
 
 
+def get_labels_set_size(nodes):
+  all_labels_list = nodes.mapValues(lambda info: info['labels']).flatMap(lambda (v, labels): labels).collect()
+  return sc.parallelize(all_labels_list).groupByKey().count()
 
-# read all files as one rdd from datafiles
-def read_file(f):
-  return sc.textFile('datafiles/' + f).map(lambda l: (l, f))
+def get_communities(nodes):
+  all_communities_list = nodes.mapValues(lambda info: info['labels']).flatMap(lambda (v, labels): map(lambda (label, _): (label, v), labels)).collect()
+  return sc.parallelize(all_communities_list).groupByKey().mapValues(list)
 
-files = [read_file(f) for f in os.listdir('datafiles')]
-lines = sc.union(files)
+def copra(nodes, k=2):
+  iteration = 0
+  old_labels_set_size = get_labels_set_size(nodes)
 
-# split each line into words with each word as (word, file) pair
-def read_line((l, f)):
-  words = re.split(r'[^\w|\']+', l)
-  filtered_words = [x for x in words if str(x) is not ""]
-  return map(lambda w: (w.lower(), f), filtered_words)
+  while True:
+    iteration += 1
+    print('\n')
+    print('#### Iteration ' + str(iteration))
 
-word_pairs = lines.flatMap(read_line)
 
-#  word_pairs is (word + ' ' + file, (word, file, 1)) pair 
-word_pairs = word_pairs.map(lambda (w, f): (w + ' ' + f, (w, f, 1)))
+    nodes_map = nodes.collectAsMap()
 
-# count words from same file with same key word + ' ' + file
-word_counts = word_pairs.reduceByKey(lambda (w1, f1, n1), (w2, f2, n2): (w1, f1, n1 + n2))
+    nodes = nodes.mapValues(lambda info: {
+      'ngbs': map(lambda v: (v, nodes_map[v]['labels']), info['ngbs']),
+      'labels': info['labels']
+    })
 
-# word_counts is (word, (file, count)) pair
-word_counts = word_counts.map(lambda (_, (w, f, count)): (w, (f, count)))
+    # update the labels for each node
+    nodes = nodes.mapValues(lambda info: {
+      'ngbs': map(lambda (v, _): v, info['ngbs']),
+      'labels': propagate_new_labels(info, 1/float(k)),
+    })
 
-# filter out stopwords after aggregtaion of words 
-# filter out common words appearing in all files by check the length of occurances equal to the length of total files
-stopwords = sc.textFile('stopwords.txt').collect()
-files_len = len(files)
-word_counts = word_counts.groupByKey().filter(lambda (w, occurances): str(w) not in stopwords and len(occurances) == files_len).mapValues(list)
+    new_labels_set_size = get_labels_set_size(nodes)
 
-# get the least count for each common word
-word_counts = word_counts.map(lambda (w, occurances): (w, sorted(map(lambda (f, count): count, occurances))))
+    print('old labels set size', old_labels_set_size)
+    print('new labels set size', new_labels_set_size)
 
-# sort the words in descending order by counts
-word_counts = word_counts.sortBy(lambda (w, counts): -1 * counts[0])
+    if new_labels_set_size == old_labels_set_size:
+      break
+    else:
+      old_labels_set_size = new_labels_set_size
 
-with open('output_a.txt', 'w') as f:
-  for (w, counts) in word_counts.collect():
-    f.write(str(w) + " " + str(counts[0]))
-    f.write('\n')
+  return get_communities(nodes).collectAsMap()
+
+try: 
+  k = sys.argv[2]
+except:
+  k = 2
+
+print('#### start the copra process with communities number ' + str(k))
+communities = copra(nodes, k);
+
+def save_output(result, filename):
+    # save expansion result
+    output_file = os.path.join(os.path.dirname(__file__), 'output', filename)
+    if os.path.exists(output_file):
+        os.remove(output_file)
+    with open(output_file, 'w') as f:
+        f.write(json.dumps(result))
+
+print('\n')
+print('#### save the output')
+save_output(communities, os.path.basename(graph_file))
 
 # stop spark
 sc.stop()
