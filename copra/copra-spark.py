@@ -195,6 +195,7 @@ except:
   k = 2
 
 print('#### start the copra process with communities number ' + str(k))
+program_start_time = time.time()
 communities = copra(nodes, k);
 
 def save_output(result, filename):
@@ -207,6 +208,7 @@ def save_output(result, filename):
 
 print('\n')
 print('#### save the output')
+print("--- %s seconds ---" % (time.time() - program_start_time))
 save_output(communities, os.path.basename(graph_file))
 
 # stop spark
