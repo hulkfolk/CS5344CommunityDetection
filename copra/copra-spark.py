@@ -11,8 +11,11 @@ import time
 
 
 # initialize spark
-conf = SparkConf()
-sc = SparkContext(conf=conf)
+# SparkContext.setSystemProperty('spark.executor.cores', '5')
+# SparkContext.setSystemProperty('spark.executor.memory', '18g')
+# SparkContext.setSystemProperty('spark.driver.cores', '5')
+# SparkContext.setSystemProperty('spark.driver.memory', '18g')
+sc = SparkContext()
 sc.setLogLevel("ERROR")
 
 try:
