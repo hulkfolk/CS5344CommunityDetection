@@ -3,147 +3,143 @@
 #### initialize
 start reading file
 finish reading file
---- 0.00397300720215 seconds ---
+--- 0.00479984283447 seconds ---
 
 
-#### start the copra process with communities number 2
+#### start the copra process with communities number 100
 start calculating labels set size
      start getting labels list
      finish getting labels list
-     --- 0.0109820365906 seconds ---
+     --- 0.0146460533142 seconds ---
 
 
      start counting
      finish counting
-     --- 0.68741106987 seconds ---
+     --- 9.21455693245 seconds ---
 finish calculating labels set size
-label size is 9
---- 0.698417901993 seconds ---
+label size is 317080
+--- 9.22923803329 seconds ---
 
 
 #### Iteration 1
 start converting to nodes map
 finish converting to nodes map
---- 0.0682060718536 seconds ---
+--- 5.25750398636 seconds ---
 
 
 start mapping neighbours nodes
 finish mapping neighbours nodes
---- 1.4066696167e-05 seconds ---
+--- 2.78949737549e-05 seconds ---
 
 
 start updating labels
 finish updating labels
---- 5.00679016113e-06 seconds ---
+--- 6.91413879395e-06 seconds ---
 
 
 start calculating labels set size
      start getting labels list
      finish getting labels list
-     --- 0.0158948898315 seconds ---
+     --- 17.5539560318 seconds ---
 
 
      start counting
      finish counting
-     --- 0.134317874908 seconds ---
+     --- 16.5391099453 seconds ---
 finish calculating labels set size
-label size is 7, old label size is 9
---- 0.150239944458 seconds ---
+label size is 316309, old label size is 317080
+--- 34.0930960178 seconds ---
 
 
 #### Iteration 2
 start converting to nodes map
 finish converting to nodes map
---- 0.0692660808563 seconds ---
+--- 37.330354929 seconds ---
 
 
 start mapping neighbours nodes
 finish mapping neighbours nodes
---- 1.59740447998e-05 seconds ---
+--- 2.78949737549e-05 seconds ---
 
 
 start updating labels
 finish updating labels
---- 9.05990600586e-06 seconds ---
+--- 0.000458002090454 seconds ---
 
 
 start calculating labels set size
      start getting labels list
      finish getting labels list
-     --- 0.0125861167908 seconds ---
+     --- 30.1666049957 seconds ---
 
 
      start counting
      finish counting
-     --- 0.136288881302 seconds ---
+     --- 40.7286839485 seconds ---
 finish calculating labels set size
-label size is 3, old label size is 7
---- 0.148904085159 seconds ---
+label size is 316177, old label size is 316309
+--- 70.895332098 seconds ---
 
 
 #### Iteration 3
 start converting to nodes map
 finish converting to nodes map
---- 0.0738370418549 seconds ---
+--- 77.3249671459 seconds ---
 
 
 start mapping neighbours nodes
 finish mapping neighbours nodes
---- 1.4066696167e-05 seconds ---
+--- 2.78949737549e-05 seconds ---
 
 
 start updating labels
 finish updating labels
---- 5.00679016113e-06 seconds ---
+--- 1.50203704834e-05 seconds ---
 
 
 start calculating labels set size
      start getting labels list
      finish getting labels list
-     --- 0.012256860733 seconds ---
+     --- 65.0574510098 seconds ---
 
 
      start counting
      finish counting
-     --- 0.125262022018 seconds ---
+     --- 55.4305381775 seconds ---
 finish calculating labels set size
-label size is 2, old label size is 3
---- 0.137549161911 seconds ---
+label size is 297091, old label size is 316177
+--- 120.488023996 seconds ---
 
 
 #### Iteration 4
 start converting to nodes map
 finish converting to nodes map
---- 0.0719549655914 seconds ---
+--- 125.570066929 seconds ---
 
 
 start mapping neighbours nodes
 finish mapping neighbours nodes
---- 1.69277191162e-05 seconds ---
+--- 2.71797180176e-05 seconds ---
 
 
 start updating labels
 finish updating labels
---- 5.00679016113e-06 seconds ---
+--- 0.000111103057861 seconds ---
 
 
 start calculating labels set size
      start getting labels list
      finish getting labels list
-     --- 0.0143690109253 seconds ---
+     --- 61.7084519863 seconds ---
 
 
      start counting
      finish counting
-     --- 0.13369512558 seconds ---
+     --- 65.8643798828 seconds ---
 finish calculating labels set size
-label size is 2, old label size is 2
---- 0.148097991943 seconds ---
-start getting communities
-finish getting communities
---- 0.0756688117981 seconds ---
+label size is 291311, old label size is 297091
+--- 127.572868824 seconds ---
 
 
-
-
-#### save the output
+#### Iteration 5
+start converting to nodes map
