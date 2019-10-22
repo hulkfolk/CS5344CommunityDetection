@@ -11,8 +11,7 @@ import time
 
 
 # initialize spark
-conf = SparkConf().setAll([('spark.executor.memory', '42g'), ('spark.executor.cores', '5'), ('spark.driver.cores', '5'), ('spark.driver.memory','42g'), ('spark.driver.maxResultSize', '80g')])
-sc.stop()
+conf = SparkConf().setAll([('spark.executor.memory', '42g'), ('spark.executor.cores', '5'), ('spark.driver.cores', '5'), ('spark.driver.memory','42g'), ('spark.driver.maxResultSize', '80g'), ('spark.local.dir', '/sdb/tmp')])
 sc = SparkContext(conf=conf)
 sc.setLogLevel("ERROR")
 
@@ -134,14 +133,14 @@ def get_communities(nodes):
 def copra(nodes, k=2):
   iteration = 0
 
-  print('start calculating labels set size')
-  start_time = time.time()
-  old_labels_set_size = get_labels_set_size(nodes)
-  print('finish calculating labels set size')
-  print('label size is ' + str(old_labels_set_size))
-  print("--- %s seconds ---" % (time.time() - start_time))
+  # print('start calculating labels set size')
+  # start_time = time.time()
+  # old_labels_set_size = get_labels_set_size(nodes)
+  # print('finish calculating labels set size')
+  # print('label size is ' + str(old_labels_set_size))
+  # print("--- %s seconds ---" % (time.time() - start_time))
 
-  while True:
+  while iteration <= 30:
     iteration += 1
     print('\n')
     print('#### Iteration ' + str(iteration))
@@ -160,7 +159,6 @@ def copra(nodes, k=2):
       'ngbs': map(lambda v: (v, nodes_map[v]['labels']), info['ngbs']),
       'labels': info['labels']
     })
-    # release memory 
     print('finish mapping neighbours nodes')
     print("--- %s seconds ---" % (time.time() - start_time))
     print('\n')
@@ -176,17 +174,25 @@ def copra(nodes, k=2):
     print("--- %s seconds ---" % (time.time() - start_time))
     print('\n')
 
-    print('start calculating labels set size')
-    start_time = time.time()
-    new_labels_set_size = get_labels_set_size(nodes)
-    print('finish calculating labels set size')
-    print('label size is ' + str(new_labels_set_size) + ', old label size is ' + str(old_labels_set_size))
-    print("--- %s seconds ---" % (time.time() - start_time))
+    # print('start calculating labels set size')
+    # start_time = time.time()
+    # new_labels_set_size = get_labels_set_size(nodes)
+    # print('finish calculating labels set size')
+    # print('label size is ' + str(new_labels_set_size) + ', old label size is ' + str(old_labels_set_size))
+    # print("--- %s seconds ---" % (time.time() - start_time))
 
-    if new_labels_set_size == old_labels_set_size:
-      break
-    else:
-      old_labels_set_size = new_labels_set_size
+    # if new_labels_set_size == old_labels_set_size:
+      # break
+    # else:
+      # old_labels_set_size = new_labels_set_size
+
+  print('start calculating labels set size')
+  start_time = time.time()
+  new_labels_set_size = get_labels_set_size(nodes)
+  print('finish calculating labels set size')
+  print('label size is ' + str(new_labels_set_size))
+  print("--- %s seconds ---" % (time.time() - start_time))
+  print('\n')
 
   return get_communities(nodes).collectAsMap()
 
