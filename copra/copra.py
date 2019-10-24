@@ -34,7 +34,7 @@ def merge_labels(labels, neighbour_labels):
 def normalize(labels):
     sum = reduce(lambda acc, val: acc + val, labels.values())
     for label, value in labels.items():
-        labels[label] = value / sum
+        labels[label] = value / float(sum)
     return labels
 
 def filter_labels(labels, threadhold):
