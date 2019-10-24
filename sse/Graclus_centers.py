@@ -1,6 +1,12 @@
 from __future__ import division
 
+import itertools
+import json
+import os
+
 from community import community_louvain
+import networkx as nx
+from networkx.algorithms.community import girvan_newman, greedy_modularity_communities
 
 sigma = 1
 
@@ -43,37 +49,64 @@ def get_clusters_node(part, cluster):
 
 def Graclus_centers(G):
     seeds = []
-    part = community_louvain.best_partition(G)
+    print(">>>>>>>> compute non-overlapping clusters")
+    # dendrogram = community_louvain.generate_dendrogram(G)
+    # with open(os.path.join(os.path.dirname(__file__), 'output', "intermediate.txt")) as f:
+    #     lines = f.readlines()
+    #
+    # d = json.loads(lines[0])
+    # dendrogram = []
+    # for item in d:
+    #     tmp = dict((int(k), v) for k, v in item.items())
+    #     dendrogram.append(tmp)
+    #
+    # part = community_louvain.partition_at_level(dendrogram, len(dendrogram)-4)
+    #
+    # clusters = {}
+    # for k, v in part.items():
+    #     if v in clusters:
+    #         clusters[v].append(k)
+    #     else:
+    #         clusters[v] = [k]
 
-    clusters = []
 
-    for val in part.values():
-        if val in clusters:
-            continue
-        else:
-            clusters.append(val)
-        print(clusters)
+    clusters = {}
+    count = 1
+    k = 3
+    comp = girvan_newman(G)
+    c = list(greedy_modularity_communities(G))
+    for parts in itertools.islice(comp, k):
+        print(parts)
+        count += 1
+        if count == k:
+            i = 0
+            for cluster in parts:
+                clusters[i] = [i for i in cluster]
+                i += 1
 
-    for cluster in clusters:
+    print(">>>>>>>>>> clusters len: " + str(len(clusters)))
+
+    for cluster in clusters.keys():
         distances = {}
-        subGraph = get_community(G, part, cluster)
-        linksCi_Ci = subGraph.number_of_edges()
-        print(linksCi_Ci)
-        degCi = sum(dict(G.degree(subGraph.nodes())).values())
-        print("degCi %d  " % degCi)
-        print("cluster %d  " % cluster)
-        for vertex in get_clusters_node(part, cluster):
-            if subGraph.has_node(vertex):
-                degV = subGraph.degree(vertex)
+        # subGraph = get_community(G, part, cluster)
+        sub_graph = G.subgraph(clusters[cluster])
+        edges = sub_graph.number_of_edges()
+        print(edges)
+        degrees = sum(dict(G.degree(sub_graph.nodes())).values())
+        # print("degrees %d  " % degrees)
+        # print("cluster %d  " % cluster)
+        for node in clusters[cluster]:
+            if sub_graph.has_node(node):
+                node_degrees = sub_graph.degree(node)
 
-                linksV_Ci = len(list(G.neighbors(vertex)))
+                node_edges = len(list(G.neighbors(node)))
 
-                print("vertex %s  " % vertex)
-                distances.update(
-                    {vertex: (-2 * linksV_Ci / degV * degCi) + (linksCi_Ci / degCi ** 2) + (sigma / degV) - (
-                            sigma / degCi)})
-                print(distances)
-        print("cluster %d minimum distance %f" % (cluster, min(distances.values())))
+                if node_degrees != 0 and node_edges != 0:
+                    distances.update(
+                        {node: (-2 * node_edges / node_degrees * degrees) + (edges / degrees ** 2) + (sigma / node_degrees) - (
+                                sigma / degrees)})
+        if distances:
+            print("cluster %d minimum distance %f" % (cluster, min(distances.values())))
 
-        seeds.append(get_key_of_value(distances, min(distances.values()))[0])
+            seeds.append(get_key_of_value(distances, min(distances.values()))[0])
     return seeds
