@@ -47,42 +47,54 @@ def get_clusters_node(part, cluster):
     return vertex
 
 
+def get_clusters(parts: dict) -> list:
+    clusters = {}
+    for k, v in parts.items():
+        if v in clusters:
+            clusters[v].append(k)
+        else:
+            clusters[v] = [k]
+
+    return list(clusters.values())
+
+
+
 def Graclus_centers(G):
+    max_size = 2
     seeds = []
     print(">>>>>>>> compute non-overlapping clusters")
-    # dendrogram = community_louvain.generate_dendrogram(G)
-    # with open(os.path.join(os.path.dirname(__file__), 'output', "intermediate.txt")) as f:
-    #     lines = f.readlines()
-    #
-    # d = json.loads(lines[0])
-    # dendrogram = []
-    # for item in d:
-    #     tmp = dict((int(k), v) for k, v in item.items())
-    #     dendrogram.append(tmp)
-    #
-    # part = community_louvain.partition_at_level(dendrogram, len(dendrogram)-4)
-    #
+    dendrogram = community_louvain.generate_dendrogram(G)
+
+    parts = community_louvain.partition_at_level(dendrogram, len(dendrogram)-3)
+
+
+    clusters = get_clusters(parts)
+
+    for c in clusters:
+        if len(c) >= max_size:
+
+            clusters.remove(c)
+
+            sub_graph = G.subgraph(c)
+            d = community_louvain.generate_dendrogram(sub_graph)
+            p = community_louvain.partition_at_level(d, len(d) - 3)
+
+            inner_clusters = get_clusters(p)
+
+            clusters.extend(inner_clusters)
+
+
     # clusters = {}
-    # for k, v in part.items():
-    #     if v in clusters:
-    #         clusters[v].append(k)
-    #     else:
-    #         clusters[v] = [k]
-
-
-    clusters = {}
-    count = 1
-    k = 3
-    comp = girvan_newman(G)
-    c = list(greedy_modularity_communities(G))
-    for parts in itertools.islice(comp, k):
-        print(parts)
-        count += 1
-        if count == k:
-            i = 0
-            for cluster in parts:
-                clusters[i] = [i for i in cluster]
-                i += 1
+    # count = 1
+    # k = 3721
+    # comp = girvan_newman(G)
+    # for parts in itertools.islice(comp, k):
+    #     count += 1
+    #     if count == k:
+    #         i = 0
+    #         for cluster in parts:
+    #             clusters[i] = [i for i in cluster]
+    #             i += 1
 
     print(">>>>>>>>>> clusters len: " + str(len(clusters)))
 

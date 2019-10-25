@@ -154,7 +154,7 @@ def neighbor_inflation(G, seeds):
 
 def __main():
     # graph_file = sys.argv[1]
-    graph_file = os.path.join(os.path.dirname(__file__), '..', 'data', 'com-dblp.ungraph.txt')
+    graph_file = os.path.join(os.path.dirname(__file__), '..', 'data', 'graph.txt')
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--ninf', help='Neighbourhood Inflation parameter', action='store_false')
