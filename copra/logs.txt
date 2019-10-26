@@ -3,26 +3,26 @@
 #### initialize
 start reading file
 finish reading file
---- 0.00430297851562 seconds ---
+--- 0.00438094139099 seconds ---
 
 
-#### start the copra process with communities number 100
+#### start the copra process with communities number 2
 
 
 #### Iteration 1
 start converting to nodes map
 finish converting to nodes map
---- 10.9703998566 seconds ---
+--- 11.6337161064 seconds ---
 
 
 start mapping neighbours nodes
 finish mapping neighbours nodes
---- 2.90870666504e-05 seconds ---
+--- 2.78949737549e-05 seconds ---
 
 
 start updating labels
 finish updating labels
---- 5.00679016113e-06 seconds ---
+--- 5.96046447754e-06 seconds ---
 
 
 
@@ -30,17 +30,17 @@ finish updating labels
 #### Iteration 2
 start converting to nodes map
 finish converting to nodes map
---- 35.3459298611 seconds ---
+--- 35.2236180305 seconds ---
 
 
 start mapping neighbours nodes
 finish mapping neighbours nodes
---- 3.00407409668e-05 seconds ---
+--- 3.31401824951e-05 seconds ---
 
 
 start updating labels
 finish updating labels
---- 2.8133392334e-05 seconds ---
+--- 2.50339508057e-05 seconds ---
 
 
 
@@ -48,331 +48,7 @@ finish updating labels
 #### Iteration 3
 start converting to nodes map
 finish converting to nodes map
---- 74.6180508137 seconds ---
-
-
-start mapping neighbours nodes
-finish mapping neighbours nodes
---- 3.09944152832e-05 seconds ---
-
-
-start updating labels
-finish updating labels
---- 1.50203704834e-05 seconds ---
-
-
-
-
-#### Iteration 4
-start converting to nodes map
-finish converting to nodes map
---- 119.829938173 seconds ---
-
-
-start mapping neighbours nodes
-finish mapping neighbours nodes
---- 2.69412994385e-05 seconds ---
-
-
-start updating labels
-finish updating labels
---- 2.90870666504e-05 seconds ---
-
-
-
-
-#### Iteration 5
-start converting to nodes map
-finish converting to nodes map
---- 127.998265028 seconds ---
-
-
-start mapping neighbours nodes
-finish mapping neighbours nodes
---- 2.78949737549e-05 seconds ---
-
-
-start updating labels
-finish updating labels
---- 0.000143051147461 seconds ---
-
-
-
-
-#### Iteration 6
-start converting to nodes map
-finish converting to nodes map
---- 141.702084064 seconds ---
-
-
-start mapping neighbours nodes
-finish mapping neighbours nodes
---- 0.000192880630493 seconds ---
-
-
-start updating labels
-finish updating labels
---- 1.12056732178e-05 seconds ---
-
-
-
-
-#### Iteration 7
-start converting to nodes map
-finish converting to nodes map
---- 143.264931917 seconds ---
-
-
-start mapping neighbours nodes
-finish mapping neighbours nodes
---- 2.59876251221e-05 seconds ---
-
-
-start updating labels
-finish updating labels
---- 0.000174999237061 seconds ---
-
-
-
-
-#### Iteration 8
-start converting to nodes map
-finish converting to nodes map
---- 152.765166998 seconds ---
-
-
-start mapping neighbours nodes
-finish mapping neighbours nodes
---- 2.69412994385e-05 seconds ---
-
-
-start updating labels
-finish updating labels
---- 0.000401973724365 seconds ---
-
-
-
-
-#### Iteration 9
-start converting to nodes map
-finish converting to nodes map
---- 157.274451017 seconds ---
-
-
-start mapping neighbours nodes
-finish mapping neighbours nodes
---- 3.09944152832e-05 seconds ---
-
-
-start updating labels
-finish updating labels
---- 0.000245094299316 seconds ---
-
-
-
-
-#### Iteration 10
-start converting to nodes map
-finish converting to nodes map
---- 161.044491053 seconds ---
-
-
-start mapping neighbours nodes
-finish mapping neighbours nodes
---- 2.78949737549e-05 seconds ---
-
-
-start updating labels
-finish updating labels
---- 0.000448942184448 seconds ---
-
-
-
-
-#### Iteration 11
-start converting to nodes map
-finish converting to nodes map
---- 163.845773935 seconds ---
-
-
-start mapping neighbours nodes
-finish mapping neighbours nodes
---- 0.000298023223877 seconds ---
-
-
-start updating labels
-finish updating labels
---- 3.00407409668e-05 seconds ---
-
-
-
-
-#### Iteration 12
-start converting to nodes map
-finish converting to nodes map
---- 168.673490047 seconds ---
-
-
-start mapping neighbours nodes
-finish mapping neighbours nodes
---- 3.60012054443e-05 seconds ---
-
-
-start updating labels
-finish updating labels
---- 0.000234842300415 seconds ---
-
-
-
-
-#### Iteration 13
-start converting to nodes map
-finish converting to nodes map
---- 174.440408945 seconds ---
-
-
-start mapping neighbours nodes
-finish mapping neighbours nodes
---- 0.000265121459961 seconds ---
-
-
-start updating labels
-finish updating labels
---- 0.000116109848022 seconds ---
-
-
-
-
-#### Iteration 14
-start converting to nodes map
-finish converting to nodes map
---- 176.432734966 seconds ---
-
-
-start mapping neighbours nodes
-finish mapping neighbours nodes
---- 2.98023223877e-05 seconds ---
-
-
-start updating labels
-finish updating labels
---- 0.000198125839233 seconds ---
-
-
-
-
-#### Iteration 15
-start converting to nodes map
-finish converting to nodes map
---- 180.81782794 seconds ---
-
-
-start mapping neighbours nodes
-finish mapping neighbours nodes
---- 0.000303983688354 seconds ---
-
-
-start updating labels
-finish updating labels
---- 5.19752502441e-05 seconds ---
-
-
-
-
-#### Iteration 16
-start converting to nodes map
-finish converting to nodes map
---- 185.437843084 seconds ---
-
-
-start mapping neighbours nodes
-finish mapping neighbours nodes
---- 2.90870666504e-05 seconds ---
-
-
-start updating labels
-finish updating labels
---- 0.000398874282837 seconds ---
-
-
-
-
-#### Iteration 17
-start converting to nodes map
-finish converting to nodes map
---- 189.212270975 seconds ---
-
-
-start mapping neighbours nodes
-finish mapping neighbours nodes
---- 2.69412994385e-05 seconds ---
-
-
-start updating labels
-finish updating labels
---- 0.000298976898193 seconds ---
-
-
-
-
-#### Iteration 18
-start converting to nodes map
-finish converting to nodes map
---- 193.524272919 seconds ---
-
-
-start mapping neighbours nodes
-finish mapping neighbours nodes
---- 2.78949737549e-05 seconds ---
-
-
-start updating labels
-finish updating labels
---- 0.000417947769165 seconds ---
-
-
-
-
-#### Iteration 19
-start converting to nodes map
-finish converting to nodes map
---- 197.444920063 seconds ---
-
-
-start mapping neighbours nodes
-finish mapping neighbours nodes
---- 0.000108003616333 seconds ---
-
-
-start updating labels
-finish updating labels
---- 0.000122785568237 seconds ---
-
-
-
-
-#### Iteration 20
-start converting to nodes map
-finish converting to nodes map
---- 201.446668863 seconds ---
-
-
-start mapping neighbours nodes
-finish mapping neighbours nodes
---- 0.000311851501465 seconds ---
-
-
-start updating labels
-finish updating labels
---- 9.05990600586e-06 seconds ---
-
-
-
-
-#### Iteration 21
-start converting to nodes map
-finish converting to nodes map
---- 203.581069946 seconds ---
+--- 41.2825031281 seconds ---
 
 
 start mapping neighbours nodes
@@ -382,7 +58,331 @@ finish mapping neighbours nodes
 
 start updating labels
 finish updating labels
---- 0.000216007232666 seconds ---
+--- 2.98023223877e-05 seconds ---
+
+
+
+
+#### Iteration 4
+start converting to nodes map
+finish converting to nodes map
+--- 42.6852309704 seconds ---
+
+
+start mapping neighbours nodes
+finish mapping neighbours nodes
+--- 3.09944152832e-05 seconds ---
+
+
+start updating labels
+finish updating labels
+--- 4.98294830322e-05 seconds ---
+
+
+
+
+#### Iteration 5
+start converting to nodes map
+finish converting to nodes map
+--- 42.3593878746 seconds ---
+
+
+start mapping neighbours nodes
+finish mapping neighbours nodes
+--- 0.000119924545288 seconds ---
+
+
+start updating labels
+finish updating labels
+--- 1.38282775879e-05 seconds ---
+
+
+
+
+#### Iteration 6
+start converting to nodes map
+finish converting to nodes map
+--- 45.1096379757 seconds ---
+
+
+start mapping neighbours nodes
+finish mapping neighbours nodes
+--- 9.17911529541e-05 seconds ---
+
+
+start updating labels
+finish updating labels
+--- 8.20159912109e-05 seconds ---
+
+
+
+
+#### Iteration 7
+start converting to nodes map
+finish converting to nodes map
+--- 45.245814085 seconds ---
+
+
+start mapping neighbours nodes
+finish mapping neighbours nodes
+--- 5.81741333008e-05 seconds ---
+
+
+start updating labels
+finish updating labels
+--- 4.10079956055e-05 seconds ---
+
+
+
+
+#### Iteration 8
+start converting to nodes map
+finish converting to nodes map
+--- 46.8461270332 seconds ---
+
+
+start mapping neighbours nodes
+finish mapping neighbours nodes
+--- 0.00020694732666 seconds ---
+
+
+start updating labels
+finish updating labels
+--- 5.19752502441e-05 seconds ---
+
+
+
+
+#### Iteration 9
+start converting to nodes map
+finish converting to nodes map
+--- 46.6448750496 seconds ---
+
+
+start mapping neighbours nodes
+finish mapping neighbours nodes
+--- 0.000106811523438 seconds ---
+
+
+start updating labels
+finish updating labels
+--- 1.97887420654e-05 seconds ---
+
+
+
+
+#### Iteration 10
+start converting to nodes map
+finish converting to nodes map
+--- 49.0505888462 seconds ---
+
+
+start mapping neighbours nodes
+finish mapping neighbours nodes
+--- 0.000120878219604 seconds ---
+
+
+start updating labels
+finish updating labels
+--- 7.60555267334e-05 seconds ---
+
+
+
+
+#### Iteration 11
+start converting to nodes map
+finish converting to nodes map
+--- 47.9153811932 seconds ---
+
+
+start mapping neighbours nodes
+finish mapping neighbours nodes
+--- 3.00407409668e-05 seconds ---
+
+
+start updating labels
+finish updating labels
+--- 0.000111818313599 seconds ---
+
+
+
+
+#### Iteration 12
+start converting to nodes map
+finish converting to nodes map
+--- 51.2594709396 seconds ---
+
+
+start mapping neighbours nodes
+finish mapping neighbours nodes
+--- 2.98023223877e-05 seconds ---
+
+
+start updating labels
+finish updating labels
+--- 0.000101804733276 seconds ---
+
+
+
+
+#### Iteration 13
+start converting to nodes map
+finish converting to nodes map
+--- 50.6130478382 seconds ---
+
+
+start mapping neighbours nodes
+finish mapping neighbours nodes
+--- 3.19480895996e-05 seconds ---
+
+
+start updating labels
+finish updating labels
+--- 9.20295715332e-05 seconds ---
+
+
+
+
+#### Iteration 14
+start converting to nodes map
+finish converting to nodes map
+--- 52.0495431423 seconds ---
+
+
+start mapping neighbours nodes
+finish mapping neighbours nodes
+--- 0.000118017196655 seconds ---
+
+
+start updating labels
+finish updating labels
+--- 1.47819519043e-05 seconds ---
+
+
+
+
+#### Iteration 15
+start converting to nodes map
+finish converting to nodes map
+--- 51.4726200104 seconds ---
+
+
+start mapping neighbours nodes
+finish mapping neighbours nodes
+--- 0.000105857849121 seconds ---
+
+
+start updating labels
+finish updating labels
+--- 4.98294830322e-05 seconds ---
+
+
+
+
+#### Iteration 16
+start converting to nodes map
+finish converting to nodes map
+--- 52.4976639748 seconds ---
+
+
+start mapping neighbours nodes
+finish mapping neighbours nodes
+--- 4.79221343994e-05 seconds ---
+
+
+start updating labels
+finish updating labels
+--- 0.000120878219604 seconds ---
+
+
+
+
+#### Iteration 17
+start converting to nodes map
+finish converting to nodes map
+--- 53.0567860603 seconds ---
+
+
+start mapping neighbours nodes
+finish mapping neighbours nodes
+--- 3.00407409668e-05 seconds ---
+
+
+start updating labels
+finish updating labels
+--- 8.39233398438e-05 seconds ---
+
+
+
+
+#### Iteration 18
+start converting to nodes map
+finish converting to nodes map
+--- 53.4694170952 seconds ---
+
+
+start mapping neighbours nodes
+finish mapping neighbours nodes
+--- 4.19616699219e-05 seconds ---
+
+
+start updating labels
+finish updating labels
+--- 0.00010085105896 seconds ---
+
+
+
+
+#### Iteration 19
+start converting to nodes map
+finish converting to nodes map
+--- 55.9514989853 seconds ---
+
+
+start mapping neighbours nodes
+finish mapping neighbours nodes
+--- 6.8187713623e-05 seconds ---
+
+
+start updating labels
+finish updating labels
+--- 9.41753387451e-05 seconds ---
+
+
+
+
+#### Iteration 20
+start converting to nodes map
+finish converting to nodes map
+--- 56.0208721161 seconds ---
+
+
+start mapping neighbours nodes
+finish mapping neighbours nodes
+--- 0.000165939331055 seconds ---
+
+
+start updating labels
+finish updating labels
+--- 1.8835067749e-05 seconds ---
+
+
+
+
+#### Iteration 21
+start converting to nodes map
+finish converting to nodes map
+--- 56.7173409462 seconds ---
+
+
+start mapping neighbours nodes
+finish mapping neighbours nodes
+--- 5.69820404053e-05 seconds ---
+
+
+start updating labels
+finish updating labels
+--- 3.91006469727e-05 seconds ---
 
 
 
@@ -390,17 +390,17 @@ finish updating labels
 #### Iteration 22
 start converting to nodes map
 finish converting to nodes map
---- 205.824311972 seconds ---
+--- 57.5532419682 seconds ---
 
 
 start mapping neighbours nodes
 finish mapping neighbours nodes
---- 9.29832458496e-05 seconds ---
+--- 0.000123023986816 seconds ---
 
 
 start updating labels
 finish updating labels
---- 0.000174999237061 seconds ---
+--- 2.90870666504e-05 seconds ---
 
 
 
@@ -408,17 +408,17 @@ finish updating labels
 #### Iteration 23
 start converting to nodes map
 finish converting to nodes map
---- 207.704227924 seconds ---
+--- 59.5726428032 seconds ---
 
 
 start mapping neighbours nodes
 finish mapping neighbours nodes
---- 0.000452995300293 seconds ---
+--- 3.00407409668e-05 seconds ---
 
 
 start updating labels
 finish updating labels
---- 6.103515625e-05 seconds ---
+--- 8.29696655273e-05 seconds ---
 
 
 
@@ -426,43 +426,7 @@ finish updating labels
 #### Iteration 24
 start converting to nodes map
 finish converting to nodes map
---- 207.137044191 seconds ---
-
-
-start mapping neighbours nodes
-finish mapping neighbours nodes
---- 0.000322103500366 seconds ---
-
-
-start updating labels
-finish updating labels
---- 4.2200088501e-05 seconds ---
-
-
-
-
-#### Iteration 25
-start converting to nodes map
-finish converting to nodes map
---- 212.586396933 seconds ---
-
-
-start mapping neighbours nodes
-finish mapping neighbours nodes
---- 2.59876251221e-05 seconds ---
-
-
-start updating labels
-finish updating labels
---- 0.000313997268677 seconds ---
-
-
-
-
-#### Iteration 26
-start converting to nodes map
-finish converting to nodes map
---- 212.293581009 seconds ---
+--- 60.606801033 seconds ---
 
 
 start mapping neighbours nodes
@@ -472,7 +436,43 @@ finish mapping neighbours nodes
 
 start updating labels
 finish updating labels
---- 0.0001380443573 seconds ---
+--- 6.22272491455e-05 seconds ---
+
+
+
+
+#### Iteration 25
+start converting to nodes map
+finish converting to nodes map
+--- 61.3691740036 seconds ---
+
+
+start mapping neighbours nodes
+finish mapping neighbours nodes
+--- 0.000117063522339 seconds ---
+
+
+start updating labels
+finish updating labels
+--- 8.10623168945e-05 seconds ---
+
+
+
+
+#### Iteration 26
+start converting to nodes map
+finish converting to nodes map
+--- 62.0865080357 seconds ---
+
+
+start mapping neighbours nodes
+finish mapping neighbours nodes
+--- 0.000126838684082 seconds ---
+
+
+start updating labels
+finish updating labels
+--- 2.59876251221e-05 seconds ---
 
 
 
@@ -480,17 +480,17 @@ finish updating labels
 #### Iteration 27
 start converting to nodes map
 finish converting to nodes map
---- 211.728927135 seconds ---
+--- 64.0302000046 seconds ---
 
 
 start mapping neighbours nodes
 finish mapping neighbours nodes
---- 0.000389814376831 seconds ---
+--- 0.000104904174805 seconds ---
 
 
 start updating labels
 finish updating labels
---- 3.60012054443e-05 seconds ---
+--- 4.60147857666e-05 seconds ---
 
 
 
@@ -498,17 +498,17 @@ finish updating labels
 #### Iteration 28
 start converting to nodes map
 finish converting to nodes map
---- 212.510118008 seconds ---
+--- 63.261772871 seconds ---
 
 
 start mapping neighbours nodes
 finish mapping neighbours nodes
---- 2.50339508057e-05 seconds ---
+--- 0.000195026397705 seconds ---
 
 
 start updating labels
 finish updating labels
---- 0.000557899475098 seconds ---
+--- 2.88486480713e-05 seconds ---
 
 
 
@@ -516,17 +516,17 @@ finish updating labels
 #### Iteration 29
 start converting to nodes map
 finish converting to nodes map
---- 213.656397104 seconds ---
+--- 66.404599905 seconds ---
 
 
 start mapping neighbours nodes
 finish mapping neighbours nodes
---- 0.000192165374756 seconds ---
+--- 0.000149011611938 seconds ---
 
 
 start updating labels
 finish updating labels
---- 9.48905944824e-05 seconds ---
+--- 1.09672546387e-05 seconds ---
 
 
 
@@ -534,57 +534,39 @@ finish updating labels
 #### Iteration 30
 start converting to nodes map
 finish converting to nodes map
---- 214.449975014 seconds ---
+--- 67.4715650082 seconds ---
 
 
 start mapping neighbours nodes
 finish mapping neighbours nodes
---- 2.59876251221e-05 seconds ---
+--- 0.00010085105896 seconds ---
 
 
 start updating labels
 finish updating labels
---- 0.00022292137146 seconds ---
-
-
-
-
-#### Iteration 31
-start converting to nodes map
-finish converting to nodes map
---- 214.850651979 seconds ---
-
-
-start mapping neighbours nodes
-finish mapping neighbours nodes
---- 0.000138998031616 seconds ---
-
-
-start updating labels
-finish updating labels
---- 0.000108957290649 seconds ---
+--- 4.72068786621e-05 seconds ---
 
 
 start calculating labels set size
      start getting labels list
      finish getting labels list
-     --- 47.756071806 seconds ---
+     --- 18.4860599041 seconds ---
 
 
      start counting
      finish counting
-     --- 154.094017982 seconds ---
+     --- 42.7310919762 seconds ---
 finish calculating labels set size
-label size is 79523
---- 201.850122929 seconds ---
+label size is 33769
+--- 61.217181921 seconds ---
 
 
 start getting communities
 finish getting communities
---- 202.793605804 seconds ---
+--- 62.1007509232 seconds ---
 
 
 
 
 #### save the output
---- 5683.90097094 seconds ---
+--- 1673.30462694 seconds ---

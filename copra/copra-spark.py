@@ -124,11 +124,13 @@ def get_labels_set_size(nodes):
 def get_communities(nodes):
   print('start getting communities')
   start_time = time.time()
-  all_communities_list = nodes.mapValues(lambda info: info['labels']).flatMap(lambda (v, labels): map(lambda (label, _): (label, v), labels)).collect()
+  all_communities_list = nodes.mapValues(lambda info: info['labels'])
+  all_communities_list = all_communities_list.flatMap(lambda (v, labels): map(lambda (label, _): (label, v), labels))
+  all_communities = all_communities_list.groupByKey().mapValues(list).collectAsMap()
   print('finish getting communities')
   print("--- %s seconds ---" % (time.time() - start_time))
   print('\n')
-  return sc.parallelize(all_communities_list).groupByKey().mapValues(list)
+  return all_communities
 
 def copra(nodes, k=2):
   iteration = 0
@@ -140,7 +142,7 @@ def copra(nodes, k=2):
   # print('label size is ' + str(old_labels_set_size))
   # print("--- %s seconds ---" % (time.time() - start_time))
 
-  while iteration <= 30:
+  while iteration < 30:
     iteration += 1
     print('\n')
     print('#### Iteration ' + str(iteration))
@@ -186,6 +188,7 @@ def copra(nodes, k=2):
     # else:
       # old_labels_set_size = new_labels_set_size
 
+
   print('start calculating labels set size')
   start_time = time.time()
   new_labels_set_size = get_labels_set_size(nodes)
@@ -194,7 +197,7 @@ def copra(nodes, k=2):
   print("--- %s seconds ---" % (time.time() - start_time))
   print('\n')
 
-  return get_communities(nodes).collectAsMap()
+  return get_communities(nodes)
 
 try: 
   k = sys.argv[2]
